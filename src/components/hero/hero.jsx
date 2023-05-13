@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import { API_REQUEST, image_base } from "../../services/api_services";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [movie, setMovie] = useState([]);
@@ -9,6 +10,7 @@ const Hero = () => {
       .then((res) => res.json())
       .then((data) => setMovie(data.results));
   }, []);
+  // console.log(movie);
 
   const settings = {
     dots: false,
@@ -60,19 +62,21 @@ const Hero = () => {
       <Slider {...settings}>
         {movie.map((item) => (
           <div key={item.id} className="h-[450px] relative">
-            <div className="shadow w-full h-[450px] absolute top-0 bottom-0" />
-            <img
-              className="bg-cover w-full h-[450px]"
-              key={item.id}
-              src={`${image_base}${item.backdrop_path}`}
-              alt={item.title}
-            />
-            <div className="absolute px-10 text-white top-[50%]">
-              <h1 className="mb-5">{item.title}</h1>
-              <h3 className="w-[450px] font-montserrat font-bold opacity-75">
-                {item.overview.slice(0, 200)}
-              </h3>
-            </div>
+            <Link to={`/watch/${item.id}`}>
+              <div className="shadow w-full h-[450px] absolute top-0 bottom-0" />
+              <img
+                className="bg-cover w-full h-[450px]"
+                key={item.id}
+                src={`${image_base}${item.backdrop_path}`}
+                alt={item.title}
+              />
+              <div className="absolute px-10 text-white top-[50%]">
+                <h1 className="mb-5">{item.title}</h1>
+                <h3 className="w-[450px] font-montserrat font-bold opacity-75">
+                  {item.overview.slice(0, 200)}
+                </h3>
+              </div>
+            </Link>
           </div>
         ))}
       </Slider>

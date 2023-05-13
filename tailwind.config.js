@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
+        instrument: ["Instrument Sans", "sans-serif"],
       },
     },
   },

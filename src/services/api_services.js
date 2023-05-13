@@ -11,4 +11,8 @@ export const API_REQUEST = {
   history: `${base_url}/discover/movie?api_key=${api}&language=en-US&with_gener=36`,
 };
 
+export const getMovieDetail = async (ID) => {
+  const response = await fetch(base_url + `/movie/${ID}?api_key=${api}`);
+  return response.json();
+};
 export const image_base = "https://image.tmdb.org/t/p/original";
