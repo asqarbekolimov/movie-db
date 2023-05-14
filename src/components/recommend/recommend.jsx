@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
-import { API_REQUEST, image_base } from "../../services/api_services";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import Slider from "react-slick";
+import { getMovieRecommend, image_base } from "../../services/api_services";
 import { Link } from "react-router-dom";
 
-const Tv = () => {
-  const [movie, setMovie] = useState([]);
+const Recommend = ({ id }) => {
+  console.log(id);
+  const [recom, setRecom] = useState([]);
+
   useEffect(() => {
-    fetch(`${API_REQUEST.tv_top_rated}`)
-      .then((res) => res.json())
-      .then((data) => setMovie(data.results));
+    getMovieRecommend(id).then((data) => setRecom(data.results));
   }, []);
+  console.log(recom);
 
   const settings = {
-    className: "left",
-    focusOnSelect: true,
+    className: "center",
+    centerMode: true,
     infinite: true,
+    centerPadding: "60px",
     slidesToShow: 6,
-    slidesToScroll: 1,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 1024,
@@ -50,7 +53,7 @@ const Tv = () => {
   return (
     <div className="w-[85%] m-auto my-8">
       <div className="flex justify-between mb-8">
-        <h1 className="font-bold">TV</h1>
+        <h1 className="font-bold">Recommendations</h1>
         <div className="flex gap-4 text-white">
           <AiOutlineArrowLeft
             onClick={() => slider?.current?.slickPrev()}
@@ -63,7 +66,7 @@ const Tv = () => {
         </div>
       </div>
       <Slider ref={slider} {...settings}>
-        {movie.map((item) => (
+        {recom.map((item) => (
           <div key={item.id} className="">
             <div className="w-[150px] h-[250px] relative">
               <Link to={`/watch/${item.id}`}>
@@ -74,9 +77,7 @@ const Tv = () => {
                   alt={item.title}
                 />
               </Link>
-              <div className="my-5 font-semibold opacity-75">
-                {item.original_name}
-              </div>
+              <div className="my-5 font-semibold opacity-75">{item.title}</div>
             </div>
           </div>
         ))}
@@ -85,4 +86,4 @@ const Tv = () => {
   );
 };
 
-export default Tv;
+export default Recommend;

@@ -1,9 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { getMovieDetail, image_base } from "../services/api_services";
+import {
+  getMovieDetail,
+  getMovieRecommend,
+  image_base,
+} from "../services/api_services";
 import { useParams } from "react-router-dom";
 import { AiOutlineHeart, AiOutlinePlayCircle } from "react-icons/ai";
+import { Popular, Recommend } from "../components";
 
 const Movie = () => {
   const { id } = useParams();
@@ -15,8 +20,9 @@ const Movie = () => {
     fetch(base_url + `/movie/${id}?api_key=${api}`)
       .then((res) => res.json())
       .then((data) => setMovie(data));
-  }, []);
-  console.log(movie);
+  }, [movie]);
+
+  // console.log(movie);
   return (
     <>
       <div className="w-full relative">
@@ -38,6 +44,7 @@ const Movie = () => {
           </div>
         </div>
       </div>
+      <Recommend id={id} />
     </>
   );
 };

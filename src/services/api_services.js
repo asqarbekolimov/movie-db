@@ -15,4 +15,11 @@ export const getMovieDetail = async (ID) => {
   const response = await fetch(base_url + `/movie/${ID}?api_key=${api}`);
   return response.json();
 };
+
+export const getMovieRecommend = async (id) => {
+  const response = await fetch(
+    base_url + `/movie/${id}/recommendations?api_key=${api}`
+  );
+  return response.json();
+};
 export const image_base = "https://image.tmdb.org/t/p/original";

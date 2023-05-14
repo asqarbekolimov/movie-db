@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { API_REQUEST, image_base } from "../../services/api_services";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Trending = () => {
   const [movie, setMovie] = useState([]);
@@ -65,12 +66,14 @@ const Trending = () => {
         {movie.map((item) => (
           <div key={item.id} className="">
             <div className="w-[150px] h-[250px] relative">
-              <img
-                className="bg-cover w-full h-full object-cover cursor-pointer hover:scale-[1.1] hover:transition hover:ease-linear rounded-md"
-                key={item.id}
-                src={`${image_base}${item.backdrop_path}`}
-                alt={item.title}
-              />
+              <Link to={`/watch/${item.id}`}>
+                <img
+                  className="bg-cover w-full h-full object-cover cursor-pointer hover:scale-[1.1] hover:transition hover:ease-linear rounded-md"
+                  key={item.id}
+                  src={`${image_base}${item.backdrop_path}`}
+                  alt={item.title}
+                />
+              </Link>
               <div className="my-5 font-semibold opacity-75">{item.title}</div>
             </div>
           </div>
