@@ -8,7 +8,7 @@ import {
 } from "../services/api_services";
 import { useParams } from "react-router-dom";
 import { AiOutlineHeart, AiOutlinePlayCircle } from "react-icons/ai";
-import { Popular, Recommend } from "../components";
+import { DetailMovie, Popular, Recommend } from "../components";
 
 const Movie = () => {
   const { id } = useParams();
@@ -20,7 +20,7 @@ const Movie = () => {
     fetch(base_url + `/movie/${id}?api_key=${api}`)
       .then((res) => res.json())
       .then((data) => setMovie(data));
-  }, [movie]);
+  }, []);
 
   // console.log(movie);
   return (
@@ -44,6 +44,7 @@ const Movie = () => {
           </div>
         </div>
       </div>
+      <DetailMovie />
       <Recommend id={id} />
     </>
   );

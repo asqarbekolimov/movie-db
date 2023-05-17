@@ -22,4 +22,16 @@ export const getMovieRecommend = async (id) => {
   );
   return response.json();
 };
+export const credits = async (id) => {
+  const response = await fetch(
+    base_url + `/movie/${id}/credits?api_key=${api}`
+  );
+  return response.json();
+};
+
+export const review = async (id) => {
+  const response = fetch(base_url + `/movie/${id}/reviews?api_key=${api}`);
+  return (await response).json();
+};
+
 export const image_base = "https://image.tmdb.org/t/p/original";

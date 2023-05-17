@@ -4,3 +4,6 @@ export { default as Popular } from "./popular/popular";
 export { default as Trending } from "./trending/trending";
 export { default as Tv } from "./tv/tv";
 export { default as Recommend } from "./recommend/recommend";
+export { default as DetailMovie } from "./detail-movie/detail-movie";
+export { default as Actor } from "./actor/actor";
+export { default as Review } from "./review/review";

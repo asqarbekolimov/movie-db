@@ -5,13 +5,13 @@ import { getMovieRecommend, image_base } from "../../services/api_services";
 import { Link } from "react-router-dom";
 
 const Recommend = ({ id }) => {
-  console.log(id);
+  // console.log(id);
   const [recom, setRecom] = useState([]);
 
   useEffect(() => {
     getMovieRecommend(id).then((data) => setRecom(data.results));
   }, []);
-  console.log(recom);
+  // console.log(recom);
 
   const settings = {
     className: "center",
